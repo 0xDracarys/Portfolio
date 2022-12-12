@@ -1,0 +1,20 @@
+<!-- about page -->
+<p>
+          Hello, I am Shubham Bhasker and I am a Coder by day and Cyber Security researcher at night. I live and work in
+          somewhere warm. I spend most of my day, experimenting on Try Hack Me and Hack The Box . Sometimes I do love spend time on picoCTF and other online CTF platform.
+          and the challenge of learning something new everyday. You can also
+          find me on Instagram where i stay active
+          <a href="https://www.instagram.com/_aka_bhaskr/"
+            >Upcoming CyberSec Expert</a
+          >
+</p>
+
+<!-- contact page-->
+<p>
+  If you are looking to get ahold of me, you can send me an email at
+  <a href="mailto:email@email.com">@your_email</a>
+</p>
+<p>
+  You can also reach me on Twitter at
+  <a href="https://www.twitter.com">@your_social_media </a>
+</p>

@@ -1,0 +1,321 @@
+<nav>
+  <div class="centre">
+    <h4>Blogs</h4>
+    <ul class="clearfix">    
+      <li>
+        <h3>
+          <a href="#one">Safe Zone</a>
+        </h3>
+        <div class="date">Web Exploitation</div>
+      </li>
+      
+      <li>
+        <h3>
+          <a href="#two">Red Stone One Carat</a>
+        </h3>
+        <div class="date">Web Exploitation</div>
+      </li>
+      
+      <li>
+        <h3>
+          <a href="#three">Keygenme-py</a>
+        </h3>
+        <div class="date">Cryptography</div>
+      </li>
+      
+
+      <li>
+        <h3>
+          <a href="#four">Basic-Mod1</a>
+        </h3>
+        <div class="date">Reverse Engineering</div>
+      </li>
+      
+
+      <li>
+        <h3>
+          <a href="#five">Mind your Ps and Qs</a>
+        </h3>
+        <div class="date">Cryptography</div>
+      </li>
+      
+    </ul>
+  </div>
+</nav>
+
+<main>
+      <link rel="stylesheet" href="styles1.css" />
+  <article>
+    
+    <h2 id="one">Safe Zone</h2>
+    
+    
+    <p>
+      SafeZone was an amazing room I got a chance to do at TryHackMe. If you’re reading this writeup I vividly recommend giving it an honest try first and coming here only when you’re stuck.
+
+      <p>
+        We first place safezone.thm in the /etc/hosts file. Its standard practice on TryHackMe to do this, though not always necessary.
+        From here we start start our standard enumeration beginning with nmap.
+      </p>
+    </p>
+
+<img src="article-1.jpeg"></p>
+    
+    <blockquote>Looks like we’ve got a webserver running on port 80, the default http port. Let’s start gobuster then and enumerate it.
+      You don’t have to use gobuster. Wfuzz and Fuff are popular alternatives. I quite like gobuster though.<br><small>Stephen Hawking</small></blockquote>
+    
+    <p>
+        That’s quite a lot of directories, and /.htpasswd is very interesting, but sadly it returns the 403 (Forbidden) status code. Still, plenty to look around and investigate.</p>
+        Let’s start with checking out note.txt first. Going over to the page we see printed out the following message over a white background:<p>
+        “Message from admin: I can’t remember my password always , that’s why I have saved it in /home/files/pass.txt file .”</p>
+        That’s quite interesting, let’s keep that in mind.
+        Detail, news, index and dashboard all leads us to a login form, but register leads us to a register form instead.<p>
+        I tried default credentials on the login form such as admin:admin and admin:password, these are pretty common and if you look online for default passwords of many services you’re bound to find them. Unfortunately for us that doesn’t seem to be the case here. Still, we can register an account so let’s do that!</p>
+    
+    
+    <p class="post-end clearfix">3 min read<span>0xDracarys</span></p>
+    
+  </div>
+</article>
+
+
+
+<article>
+  <h2 id="two">RED STONE ONE CARAT</h2>
+
+ 
+  
+  <p>We start of my driving of tryhackme this room a quick scan on all ports using running nmap service scan to cover the top port…</p>
+
+<img src="article-2.jpeg"></p> 
+
+  <p>But as soon as I saw the tryhackme hint I felt that I was going in the wrong direction, but maybe not now because first of all we will attack Brute Force with the wordlist file rockyou.txt and add it to a new file and it is called as password.txt</p>
+  
+ <p>So, now we will crack a password with password.txt file and the username is noraj that i got a tryhackme room…</p>
+
+ <blockquote>ssh password: ch*********</blockquote>
+ <p>Now, after cracking let’s access SSH via some credentials.</p>
+   
+ <p>
+   Now we have gone to an interpreter as you can see that any kind of command is not working here, so now I again went to the tryhackme room and saw that it was created with ruby programming.
+<p>
+Finally this command works..
+</p>
+pwd
+<p>
+echo *
+</p>
+echo .*
+<p>
+and some file appear here!!! Vola :-)
+ </p>
+
+  <p>So, lets check other file via this command…and i saw ruby file here</p>
+<p>
+echo bin/*
+</p>
+test.rb (file showing here)
+<p>
+You could transfer all the files you see with scp to your machine and read them there. But in this case, executing the file “test.rb” will print its contents:</p>
+<p>
+After searching some stuff what this ruby code means, you can create a payload to start sh:
+(After getting the shell, you have to reset the PATH variable):
+Vola guys we got a user.txt (flag)
+</p>
+<blockquote>user.txt
+
+THM{3a1**********************}</blockquote>
+
+<p>Next enumerate listening ports. Because netstat and ss are not allowed for the user noraj, you have to do netstat with some ruby code.
+
+Transfer the ruby file first<p>
+  and with wget command download this file (netstat.rb) in our machine
+
+and transfer it in victim machine via scp. Then execute the transferred file: Connect to the service at port 31547 and bypass the blacklist to execute commands: and finally we got a flag (root flag) :-)
+</p></p>
+
+<blockquote>root.txt
+
+THM{58e************************}
+
+149
+
+
+</blockquote>
+
+
+
+  
+  
+  <p class="post-end clearfix">8 min read<span>0xDracarys</span></p>
+</article>
+
+<article>
+  <h2 id="three">KEYGENME-PY</h2>  
+  
+  <p>Disclaimer! I do not own any of the challenge files
+
+    Looking at the keygenme-trial.py
+    Instead of running the script right away, it is best practice to read the source code, right?</p>
+
+  <p></p>
+  
+  <p><img src="article-3.jpeg"></p>
+  
+  <p><blockquote><code>
+    # GLOBALS --v<br>
+    arcane_loop_trial = True<br>
+    jump_into_full = False<br>
+    full_version_code = ""username_trial = "FREEMAN"<br>
+    bUsername_trial = b"FREEMAN"key_part_static1_trial = "picoCTF{1n_7h3_|<3y_of_"<br>
+    key_part_dynamic1_trial = "xxxxxxxx"<br>
+    key_part_static2_trial = "}"<br>
+    key_full_template_trial = key_part_static1_trial + key_part_dynamic1_trial + <br>key_part_static2_trial</code>
+</blockquote>
+    </p>
+  
+        <p>These are all the global variables. What is really important to us though?
+          <blockquote>username_trial = "GOUGH"<br>
+              bUsername_trial = b"GOUGH"</blockquote>
+        <p>This will be obvious later, next ofcourse the flag! Or here it is called the key. It is comprised of two static parts, and a dynamic part:</p>
+          <blockquote>key_full_template_trial = key_part_static1_trial + <br>key_part_dynamic1_trial + key_part_static2_trial</blockquote>
+
+        <p>Great… maybe we can have a look at how the dynamic part is generated?
+            Dynamic key
+            To check the validity of the dynamic key, the following function is used (I split it):</p>
+            <blockquote><code>def check_key(key, username_trial):<br>
+            global key_full_template_trial<br>
+                if len(key) != len(key_full_template_trial):<br>
+        return False<br>
+    else:<br>
+        # Check static base key part --v<br>
+        i = 0<br>
+        for c in key_part_static1_trial:<br>
+            if key[i] != c:<br>
+                return False            i += 1</code></blockquote>
+        <p>First, check if the key is even long enough! After that check if we have the 1st static part correct (we can copy and paste, right?). Now the iterator i is at our dynamic part, and here is the if tree that checks our dynamic key:</p>
+        <p>
+          So notice the following, we have a bunch of indexes: <cite>4,5,3,6,2,7,1,8.</cite> How do we use these? Well first a sha256 hash of the username is GOUGH calculated and then we pick the corresponding character. This is pretty easy to script.
+        </p>
+
+        <p><b>solve.py</b>
+          <blockquote><code>
+            import hashlib<br>
+            import base64<br>
+            key_part_static1_trial = "picoCTF{1n_7h3_|<3y_of_"<br>
+            key_part_dynamic1_trial = "xxxxxxxx"<br>
+            key_part_static2_trial = "}"<br>
+            key_full_template_trial = key_part_static1_trial + key_part_dynamic1_trial + <br>key_part_static2_trialusername_trial = b"GOUGH"potential_dynamic_key = ""# where our input begins:<br>
+            offset = 23# positions in username_trial<br>
+            positions = [4,5,3,6,2,7,1,8]for p in positions:<br>
+            potential_dynamic_key += hashlib.sha256(username_trial).hexdigest()[p]key = <br>key_part_static1_trial + potential_dynamic_key + key_part_static2_trial<br>
+            print(key)<br>
+            print(len(key))</code>
+          </blockquote>
+        </p>
+
+          <p>
+            
+            We have a hardocded offset, out positions and then we just calculate the hashes one by one, and add to the key. After running the script, here is the result:<<br>
+            picoCTF{1n_7h3_|<3y_of_f911a486}<br>
+            32<br>
+            <cite>Great!</cite>
+
+          </p>
+
+        </p>
+  
+  
+  <p class="post-end clearfix">3 min read<span>0xDracarys</span></p>
+  
+</article>
+
+
+
+<article>
+  <h2 id="four">BASIC-MOD1</h2>  
+  
+  <p>About the challange :
+      We found this weird message being passed around on the servers, we think we have a working decryption scheme. Download the message here. Take each number mod 37 and map it to the following character set: 0–25 is the alphabet (uppercase), 26–35 are the decimal digits, and 36 is an underscore. Wrap your decrypted message in the picoCTF flag format (i.e. picoCTF{<code>decrypted_message</code>})</p>
+
+  <p><b>Solving this challenge :- </b><br>
+    This challenge is an easy one, just some math.<br>
+    Taking the numbers from the downloaded messages.txt and modulo them with 37<br>
+    In the script solve.py we do the math and get the decoded message</p>
+  
+  <p><img src="article-4.jpeg"></p>
+  
+  <p><code>
+    <blockquote>
+      #!/usr/bin/env python## Defining the variables<br>
+      charset = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","0","1","2","3","4","5","6","7","8","9","_"]<br>
+      flag = "picoCTF{"<br>
+      encfile = "message.txt"print("Try to decrypt file " + encfile)## Open message.txt and doing the math<br>
+      with open(encfile, 'r', encoding='utf-8') as file:<br>
+      for line in file:<<br>
+       numbers = line.split()<br>
+      for number in numbers:<br>
+      # Here we add the corresponding character to the calculated number<br>
+             flag = flag + (charset[int(number)%37])print("If anything worked... this should be the <br>flag...")## Adding the closing quirly braces<br>
+      print(flag + "}")
+
+    </blockquote>
+    </code></p>
+  
+  <p><b>Output</b>
+    <br>
+    ./solve.py<br>
+    Try to decrypt file message.txt<br>
+    If anything worked… this should be the flag…<br>
+    picoCTF{<code>r0und_n_r0und_ce58a3a0</code>}</p>
+  
+  
+  <p class="post-end clearfix">2 min read<span>0xDracarys</span></p>
+  
+</article>
+
+
+
+<article>
+  <h2 id="five">MIND YOUR PS AND QS</h2>  
+  
+  <p>Description : 
+    In RSA, a small e value can be problematic, but what about N? Can you decrypt this?
+    Values We have been given the following values:</p>
+
+  <p><code>
+    <blockquote>
+    Decrypt my super sick RSA:<br><br>
+    c:843044897663847841476319711639772861390329326681532977209935413827620909782846667<br>
+    n:1422450808944701344261903748621562998784243662042303391362692043823716783771691667<br>
+    e: 65537
+  </blockquote> 
+  </code></p>
+  
+  <p><img src="article-5.jpeg"></p>
+  
+  <p>C is the ciphertext we wish to decode. N is the result of multiplying two prime numbers p and q, ie. n = p * q. E is the multiplicative inverse of a private exponent d modulo phi. Phi is equal to (p-1)*(q-1). Here in a more ordered fashion:</p>
+  
+  <p><code>
+    <blockquote>
+    C = ciphertext<br>
+    p and q = prime numbers<br>
+    n = p * q<br>
+    phi = (p-1) * (q-1)<br>
+    e = some number that 1 < e < phi and gcd(e,phi) == 1<br>
+    d = e^(-1) mod phiGreat! Now we just need to find p and q…
+  </blockquote> 
+  </code></p>
+  
+  
+  <p class="post-end clearfix">1 min read<span>0xDracarys</span></p>
+  
+</article>
+
+
+<footer class="footer">
+      <p>&copy; <span id="date"></span> shubham bhasker. all rights reserved</p>
+    </footer>
+
+
+</main>
